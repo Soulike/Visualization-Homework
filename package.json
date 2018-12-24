@@ -23,7 +23,7 @@
   "browserslist": [
     ">0.2%",
     "not dead",
-    "ie >= 9",
+    "ie >= 11",
     "not op_mini all"
   ]
 }
