@@ -1,0 +1,10 @@
+.Map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mapWrapper {
+        width: 50rem;
+        height: 30rem;
+    }
+}
