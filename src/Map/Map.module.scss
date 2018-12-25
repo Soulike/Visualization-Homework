@@ -4,7 +4,10 @@
     align-items: center;
 
     .mapWrapper {
-        width: 50rem;
-        height: 30rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 40rem;
     }
 }
