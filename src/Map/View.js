@@ -56,11 +56,13 @@ class Map extends Component
                         baseOption: {
                             title: {
                                 text: '全球二氧化碳排放分布',
+                                subtext: '数据来自世界银行',
                                 textStyle: {
                                     fontWeight: 'bold',
                                     fontFamily: 'serif',
                                     align: 'center',
-                                    verticalAlign: 'middle'
+                                    verticalAlign: 'middle',
+                                    fontSize: '40'
                                 },
                                 left: 'center',
                                 right: 'center'
@@ -69,15 +71,12 @@ class Map extends Component
                                 type: 'continuous',
                                 min: 0,
                                 max: 0,
-                                text: ['大', '小'],
+                                text: ['最多 (kt)', '最少 (kt)'],
                                 realtime: true,
                                 calculable: true,
                                 inRange: {
-                                    color: ['#FFF', '#F00', '#E00', '#D00', '#B00', '#A00', '#900', '#800', '#700', '#600'],
+                                    color: ['#FFF', '#FD0', '#FF8700', '#F00'],
                                 },
-                                outOfRange: {
-                                    color: ['#AAA'],
-                                }
                             },
                             tooltip: {
                                 trigger: 'item',
@@ -114,15 +113,18 @@ class Map extends Component
                                     roam: false,
                                     emphasis: {
                                         label: {
-                                            show: true
+                                            show: true,
+                                            color: '#333',
+                                            fontSize: 20
                                         },
                                         itemStyle: {
-                                            areaColor: '#09C'
+                                            areaColor: '#09C',
                                         }
                                     },
                                     itemStyle: {
                                         borderWidth: 0.25,
-                                        borderColor: '#000'
+                                        borderColor: '#DDD',
+                                        areaColor: '#EEE'
                                     },
                                     data: []
                                 },
@@ -135,7 +137,7 @@ class Map extends Component
                                     },
                                     radius: '30%',
                                     data: [],
-                                    center: ['15%', '70%'],
+                                    center: ['15%', '70%']
                                 }
                             ]
                         },
