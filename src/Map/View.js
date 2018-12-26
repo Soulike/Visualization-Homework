@@ -14,10 +14,38 @@ class Map extends Component
         getAsync('/server/getCO2Data')
             .then(res =>
             {
-                const {code, data} = res;
+                const {code, data: {sheetData, YEAR_START, YEAR_END}} = res;
                 if (code === 200)
                 {
-                    const {YEAR_START, YEAR_END, options} = data;
+                    const options = [];
+                    let maxValue = 0;
+
+                    for (let i = YEAR_START; i <= YEAR_END; i++)
+                    {
+                        const data = [];
+                        for (const row of sheetData)
+                        {
+                            if (row[i.toString()] !== undefined)
+                            {
+                                data.push({name: row['Country Name'], value: parseFloat(row[i.toString()])});
+                                if (parseFloat(row[i.toString()]) > maxValue)
+                                {
+                                    maxValue = parseFloat(row[i.toString()]);
+                                }
+                            }
+                        }
+                        options.push({
+                            title: {
+                                text: `全球二氧化碳排放分布（${i} 年）`
+                            },
+                            visualMap: {
+                                max: maxValue,
+                            },
+                            series: [{data}, {data}]
+                        });
+                        maxValue = 0;
+                    }
+
                     const timeLineArray = [];
                     for (let i = YEAR_START; i <= YEAR_END; i++)
                     {
@@ -80,7 +108,7 @@ class Map extends Component
                             },
                             series: [
                                 {
-                                    name: '全球二氧化碳排放量',
+                                    name: '全球二氧化碳排放分布',
                                     type: 'map',
                                     mapType: 'world',
                                     roam: false,
@@ -97,6 +125,17 @@ class Map extends Component
                                         borderColor: '#000'
                                     },
                                     data: []
+                                },
+                                {
+                                    type: 'pie',
+                                    avoidLabelOverlap: false,
+                                    label: {
+                                        show: true,
+                                        fontSize: '16'
+                                    },
+                                    radius: '30%',
+                                    data: [],
+                                    center: ['15%', '70%'],
                                 }
                             ]
                         },
