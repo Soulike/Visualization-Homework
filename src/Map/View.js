@@ -11,7 +11,7 @@ class Map extends Component
         const chart = echarts.init(document.querySelector(`.${style.mapWrapper}`));
         chart.showLoading();
 
-        getAsync('/getCO2Data')
+        getAsync('/server/getCO2Data')
             .then(res =>
             {
                 const {code, data} = res;
